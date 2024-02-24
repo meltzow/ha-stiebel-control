@@ -2,3 +2,6 @@ settings.json
 .DS_Store
 .vscode
 secrets.yaml
+build/
+cache/
+.esphome/

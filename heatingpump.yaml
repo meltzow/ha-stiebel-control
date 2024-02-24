@@ -1,6 +1,9 @@
+#docker run --rm --privileged -v "${PWD}":/config --device=/dev/ttyUSB0 -it ghcr.io/esphome/esphome run heatingpump.yaml
+
 esphome:
   name: heatingpump
   friendly_name: "Heating Pump CAN Interface"
+  area: heizungskeller
 
   platform: ESP32
   board: esp32dev
@@ -15,30 +18,24 @@ esphome:
 
 # Enable Home Assistant API
 api:
-  encryption:
-    key: "1cSivcBYHZBouiCgueZtgbwR0cBoKPVc48JNhvXK6JI="
+  password: ""
 
 # Enable logging
 logger:
   level: INFO
 
 ota:
-  password: "f0e6110663e3bef67846f076d7e4db81"
+  password: ""
 
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
-  manual_ip:
-    static_ip: 192.168.0.194
-    gateway: 192.168.0.1
-    dns1: 192.168.0.2
-    subnet: 255.255.255.0
-  use_address: heatingpump.local
+  use_address: heatingpump
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "Heatingpump Fallback Hotspot"
-    password: "AsBl9n46jlOx"
+    ssid: "Heatpump Fallback Hotspot"
+    password: "Td6mth2TGTF6"
 
 captive_portal:
 
@@ -1579,10 +1576,10 @@ canbus:
   - platform: mcp2515
     id: my_mcp2515
     spi_id: McpSpi
-    cs_pin: GPIO5
+    cs_pin: GPIO15
     can_id: 700
     use_extended_id: false
-    bit_rate: 20kbps
+    bit_rate: 50kbps
     on_frame:
 
 #########################################
